@@ -1,14 +1,14 @@
 #!/bin/bash
 #SBATCH --job-name=STAR_index_SJ
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=anor9792@colorado.edu
+#SBATCH --mail-user=
 #SBATCH --nodes=2
 #SBATCH --ntasks=16
 #SBATCH --mem=64gb
 #SBATCH --time=1:00:00
 #SBATCH --partition=short
-#SBATCH --output=/scratch/Users/anor9792/eofiles/%x.%j.out
-#SBATCH --error=/scratch/Users/anor9792/eofiles/%x.%j.err
+#SBATCH --output=%x.%j.out
+#SBATCH --error=%x.%j.err
 
 echo Job: $SLURM_JOB_NAME with ID $SLURM_JOB_ID
 echo Running on `hostname`

@@ -1,14 +1,14 @@
 #!/bin/bash
 #SBATCH --job-name=multiqc
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=anor9792@colorado.edu
+#SBATCH --mail-user=
 #SBATCH --nodes=1
 #SBATCH --ntasks=8
 #SBATCH --mem=4gb
 #SBATCH --time=00:30:00
 #SBATCH --partition=short
-#SBATCH --output=/scratch/Users/anor9792/eofiles/%x.%j.out
-#SBATCH --error=/scratch/Users/anor9792/eofiles/%x.%j.err
+#SBATCH --output=%x.%j.out
+#SBATCH --error=%x.%j.err
 
 echo Job: $SLURM_JOB_NAME with ID $SLURM_JOB_ID
 echo Running on `hostname`
@@ -17,9 +17,10 @@ echo Using $SLURM_NTASKS processors and $SLURM_NNODES nodes
 
 module load singularity
 
-inDir=/QCfiles
-outDir=/mqc
-multiqc=/scratch/Shares/public/singularity/multiqc-1.7.img
+# Set these for your environment before submitting the job.
+inDir=""
+outDir=""
+multiqc=""
 
 pwd; hostname; date
 

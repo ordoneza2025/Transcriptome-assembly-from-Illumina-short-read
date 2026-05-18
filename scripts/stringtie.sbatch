@@ -2,15 +2,15 @@
 
 #SBATCH --job-name=stringtie
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=anor9792@colorado.edu
+#SBATCH --mail-user=
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=24gb
 #SBATCH --time=20:00:00
 #SBATCH --partition=short
-#SBATCH --output=/scratch/Users/anor9792/eofiles/%x.%j.out
-#SBATCH --error=/scratch/Users/anor9792/eofiles/%x.%j.err
+#SBATCH --output=%x.%j.out
+#SBATCH --error=%x.%j.err
 
 echo Job: $SLURM_JOB_NAME with ID $SLURM_JOB_ID
 echo Running on `hostname`
@@ -25,8 +25,9 @@ refFile=/scratch/Users/anor9792/bat_decoys/artibeus.j/Genomes/ucsc/GCF_021234435
 
 echo "Stringtie version: "$(stringtie --version)
 
-module load stringtie
-
+echo "Initializing conda for StringTie..."
+eval "$(conda shell.bash hook)"
+conda activate stringtie2
 
 pwd; hostname; date
 

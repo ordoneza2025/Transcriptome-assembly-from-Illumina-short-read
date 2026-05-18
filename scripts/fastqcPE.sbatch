@@ -1,22 +1,24 @@
 #!/bin/bash
 #SBATCH --job-name=PE_fqc
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=anor9792@colorado.edu
+#SBATCH --mail-user=
 #SBATCH --nodes=1
 #SBATCH --ntasks=8
 #SBATCH --mem=4gb
 #SBATCH --time=00:30:00
 #SBATCH --partition=short
-#SBATCH --output=/scratch/Users/anor9792/eofiles/%x.%A_%a.out
-#SBATCH --error=/scratch/Users/anor9792/eofiles/%x.%A_%a.err
+#SBATCH --output=%x.%A_%a.out
+#SBATCH --error=%x.%A_%a.err
 
 
 echo Job: $SLURM_JOB_NAME with ID $SLURM_JOB_ID
 echo Running on `hostname`
 echo date
 
-inDir=/bbduk
-outDir=/QCfiles
+# Set these for your environment before submitting the job.
+# Paths are intentionally left blank here to keep the script general.
+inDir=""
+outDir=""
 
 queries=($(ls ${inDir}/*fastq.gz | xargs -n 1 basename | sed --expression='s/_R1_paired.fastq.gz//g' | sed --expression='s/_R2_paired.fastq.gz//g' | uniq))
 

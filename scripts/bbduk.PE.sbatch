@@ -1,23 +1,25 @@
 #!/bin/bash
 #SBATCH --job-name=bbduk_PE
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=anor9792@colorado.edu
+#SBATCH --mail-user=
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --mem=32gb
 #SBATCH --time=4:00:00
 #SBATCH --partition=short
-#SBATCH --output=/scratch/Users/anor9792/eofiles/$x.%A_%a.out
-#SBATCH --error=/scratch/Users/anor9792/eofiles/%x.%A_%a.err
+#SBATCH --output=%x.%A_%a.out
+#SBATCH --error=%x.%A_%a.err
+# For array jobs, add: SBATCH --array=0-<N-1>
 
-
-inDir=/Shares/CL_Shared/data/andrea/IL18R1_paper/sr_sequencing/AJ02
-outDir=/scratch/Users/anor9792/bat_decoys/artibeus.j/2026_thesis/short_Read/bbduk_2
-adapterFile=/opt/bbmap/38.05/resources/adapters.fa 
-
+# Set these values for your environment before submitting the job.
+# They are left blank here to keep the script general for anyone using it.
+inDir=""
+outDir=""
+adapterFile=""
 numThreads=1
 
 module load bbmap
+
 
 ##reading in multiple PE files that end with the same extension to run them as an array 
 
